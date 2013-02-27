@@ -4,10 +4,10 @@
 	id		= "http://socialsci.com"
 	version 	= "1.0.0">
 
-	<name>Checkers</name>
+	<name>Chess</name>
 
 	<description>
-		An app for playing checkers.
+		An app for playing chess.
 	</description>
 
 	<author href="http://github.com/leonnoel"
