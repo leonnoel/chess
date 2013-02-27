@@ -726,6 +726,84 @@ $("#board").on("click",".queenBlack",function(e){ //selecting Black piece
 	}//top if
 });//queen Black moves
 
+//king white moves
+
+$("#board").on("click",".kingWhite",function(e){ //selecting white piece
+	if($(".kingWhite").hasClass("possibleCapture") != true){
+	$(".selectedPiece").removeClass("selectedPiece");
+	$(".possibleZone").removeClass("possibleZone");
+	$(this).addClass("selectedPiece"); // add class so you know its selected
+
+		//get possible move options (adds class .possibleZone)
+		getkingWhiteOptions($(".selectedPiece").attr("data-x"),$(".selectedPiece").attr("data-y"));
+
+		//white king move options 
+		function getkingWhiteOptions(kingWhiteX,kingWhiteY){
+			var kingWhitePossibleXValue = parseInt(kingWhiteX) - 1;
+			var kingWhitePossibleXValue2 = parseInt(kingWhiteX) - 2;
+			var kingWhiteDiagonalXValue = parseInt(kingWhiteX) - 1; 
+			var kingWhiteDiagonalYValue1 = parseInt(kingWhiteY) - 1;
+			var kingWhiteDiagonalYValue2 = parseInt(kingWhiteY) + 1;
+
+			if($("[data-x='"+kingWhitePossibleXValue+"'][data-y='"+kingWhiteY+"']").hasClass("occupied") != true){     
+			$("[data-x='"+kingWhitePossibleXValue+"'][data-y='"+kingWhiteY+"']").addClass("possibleZone");
+			}//Move Foward 1 as long as noone is there
+			if(kingWhiteX == 6 && $("[data-x='"+kingWhitePossibleXValue+"'][data-y='"+kingWhiteY+"']").hasClass("occupied") != true 
+				&& $("[data-x='"+kingWhitePossibleXValue2+"'][data-y='"+kingWhiteY+"']").hasClass("occupied") != true){
+				var kingWhitePossibleXValue = parseInt(kingWhiteX) - 2;
+				$("[data-x='"+kingWhitePossibleXValue+"'][data-y='"+kingWhiteY+"']").addClass("possibleZone");
+			}//First move can go two
+			if($("[data-x='"+kingWhiteDiagonalXValue+"'][data-y='"+kingWhiteDiagonalYValue1+"']").hasClass("occupied") == true 
+				&& $("[data-x='"+kingWhiteDiagonalXValue+"'][data-y='"+kingWhiteDiagonalYValue1+"']").hasClass("blackPiece") == true){
+				$("[data-x='"+kingWhiteDiagonalXValue+"'][data-y='"+kingWhiteDiagonalYValue1+"']").addClass("possibleCapture");
+			}//Diagonal Move 1
+			if($("[data-x='"+kingWhiteDiagonalXValue+"'][data-y='"+kingWhiteDiagonalYValue2+"']").hasClass("occupied") == true 
+				&& $("[data-x='"+kingWhiteDiagonalXValue+"'][data-y='"+kingWhiteDiagonalYValue2+"']").hasClass("blackPiece") == true){
+				$("[data-x='"+kingWhiteDiagonalXValue+"'][data-y='"+kingWhiteDiagonalYValue2+"']").addClass("possibleCapture");
+			}//Diagonal Move 2
+		};//function getkingWhiteOptions
+	}//top if
+});//kingWhite moves
+
+//kingBlack moves
+
+$("#board").on("click",".kingBlack",function(e){ //selecting white piece
+	if($(".kingBlack").hasClass("possibleCapture") != true){
+	$(".selectedPiece").removeClass("selectedPiece");
+	$(".possibleZone").removeClass("possibleZone");
+	$(this).addClass("selectedPiece"); // add class so you know its selected
+
+		//get possible move options (adds class .possibleZone)
+		getkingBlackOptions($(".selectedPiece").attr("data-x"),$(".selectedPiece").attr("data-y"));
+
+		//white king move options 
+		function getkingBlackOptions(kingBlackX,kingBlackY){
+			var kingBlackPossibleXValue = parseInt(kingBlackX) + 1;
+			var kingBlackPossibleXValue2 = parseInt(kingBlackX) + 2;
+			var kingBlackDiagonalXValue = parseInt(kingBlackX) + 1; 
+			var kingBlackDiagonalYValue1 = parseInt(kingBlackY) + 1;
+			var kingBlackDiagonalYValue2 = parseInt(kingBlackY) -1;
+
+			if($("[data-x='"+kingBlackPossibleXValue+"'][data-y='"+kingBlackY+"']").hasClass("occupied") != true){     
+			$("[data-x='"+kingBlackPossibleXValue+"'][data-y='"+kingBlackY+"']").addClass("possibleZone");
+			}//Move Foward 1 as long as noone is there
+			if(kingBlackX == 1 && $("[data-x='"+kingBlackPossibleXValue+"'][data-y='"+kingBlackY+"']").hasClass("occupied") != true 
+				&& $("[data-x='"+kingBlackPossibleXValue2+"'][data-y='"+kingBlackY+"']").hasClass("occupied") != true){
+				var kingBlackPossibleXValue = parseInt(kingBlackX) + 2;
+				$("[data-x='"+kingBlackPossibleXValue+"'][data-y='"+kingBlackY+"']").addClass("possibleZone");
+			}//First move can go two
+			if($("[data-x='"+kingBlackDiagonalXValue+"'][data-y='"+kingBlackDiagonalYValue1+"']").hasClass("occupied") == true 
+				&& $("[data-x='"+kingBlackDiagonalXValue+"'][data-y='"+kingBlackDiagonalYValue1+"']").hasClass("whitePiece") == true ){
+				$("[data-x='"+kingBlackDiagonalXValue+"'][data-y='"+kingBlackDiagonalYValue1+"']").addClass("possibleCapture");
+			}//Diagonal Move 1
+			if($("[data-x='"+kingBlackDiagonalXValue+"'][data-y='"+kingBlackDiagonalYValue2+"']").hasClass("occupied") == true 
+				&& $("[data-x='"+kingBlackDiagonalXValue+"'][data-y='"+kingBlackDiagonalYValue2+"']").hasClass("whitePiece") == true){
+				$("[data-x='"+kingBlackDiagonalXValue+"'][data-y='"+kingBlackDiagonalYValue2+"']").addClass("possibleCapture");
+			}//Diagonal Move 2
+		};//function getkingBlackOptions
+	}//top if
+}); //kingBlack Moves
+
 //Move pieces
 
 $("#board").on("click",".black,.white",function(e){ 
@@ -786,6 +864,20 @@ $(this).addClass("selectedZone");
 		$(".selectedPiece").removeClass("blackPiece");
 		$(".selectedZone").addClass("queenBlack"); //rebuild piece
 		$(".selectedZone").addClass("blackPiece");	
+
+	}
+	if($(".selectedPiece").hasClass("kingBlack") == true){
+		$(".selectedPiece").removeClass("kingBlack"); //if moving remove it
+		$(".selectedPiece").removeClass("blackPiece");
+		$(".selectedZone").addClass("kingBlack"); //rebuild piece
+		$(".selectedZone").addClass("blackPiece");	
+
+	}
+	if($(".selectedPiece").hasClass("kingWhite") == true){
+		$(".selectedPiece").removeClass("kingWhite"); //if moving remove it
+		$(".selectedPiece").removeClass("whitePiece");
+		$(".selectedZone").addClass("kingWhite"); //rebuild piece
+		$(".selectedZone").addClass("whitePiece");	
 
 	}
 			$(".selectedZone").addClass("occupied");
