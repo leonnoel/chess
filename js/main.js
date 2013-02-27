@@ -415,6 +415,316 @@ $("#board").on("click",".rookBlack",function(e){ //selecting white piece
 });//ROOK Black moves
 
 
+//Bishop WHITE MOVES
+$("#board").on("click",".bishopWhite",function(e){ //selecting white piece
+	if($(".bishopWhite").hasClass("possibleCapture") != true){
+	$(".selectedPiece").removeClass("selectedPiece");
+	$(".possibleZone").removeClass("possibleZone");
+	$(this).addClass("selectedPiece"); // add class so you know its selected
+
+		//get possible move options (adds class .possibleZone)
+		getBishopWhiteOptions($(".selectedPiece").attr("data-x"),$(".selectedPiece").attr("data-y"));
+
+		//bishop move options 
+		function getBishopWhiteOptions(bishopWhiteX,bishopWhiteY){
+			var bishopWhitePossibleXValue = parseInt(bishopWhiteX) - 1;
+			var bishopWhitePossibleXValue2 = parseInt(bishopWhiteX) + 1;
+			var bishopWhitePossibleYValue = parseInt(bishopWhiteY) - 1;
+			var bishopWhitePossibleYValue2 = parseInt(bishopWhiteY) + 1;
+			
+
+			while($("[data-x='"+bishopWhitePossibleXValue+"'][data-y='"+bishopWhitePossibleYValue+"']").hasClass("occupied") != true 
+				&& bishopWhitePossibleXValue >= 0){     
+			$("[data-x='"+bishopWhitePossibleXValue+"'][data-y='"+bishopWhitePossibleYValue+"']").addClass("possibleZone");
+			bishopWhitePossibleXValue -= 1;
+				if($("[data-x='"+bishopWhitePossibleXValue+"'][data-y='"+bishopWhitePossibleYValue+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+bishopWhitePossibleXValue+"'][data-y='"+bishopWhitePossibleYValue+"']").hasClass("blackPiece")){
+					$("[data-x='"+bishopWhitePossibleXValue+"'][data-y='"+bishopWhitePossibleYValue+"']").addClass("possibleCapture");
+				}//Forward Capture
+			}//Move Foward 
+			while($("[data-x='"+bishopWhitePossibleXValue2+"'][data-y='"+bishopWhitePossibleYValue2+"']").hasClass("occupied") != true 
+				&& bishopWhitePossibleXValue2 <= 7){     
+			$("[data-x='"+bishopWhitePossibleXValue2+"'][data-y='"+bishopWhitePossibleYValue2+"']").addClass("possibleZone");
+			bishopWhitePossibleXValue2++;
+				if($("[data-x='"+bishopWhitePossibleXValue2+"'][data-y='"+bishopWhitePossibleYValue2+"']").hasClass("occupied") == true 
+						&& $("[data-x='"+bishopWhitePossibleXValue2+"'][data-y='"+bishopWhitePossibleYValue2+"']").hasClass("blackPiece")){
+						$("[data-x='"+bishopWhitePossibleXValue2+"'][data-y='"+bishopWhitePossibleYValue2+"']").addClass("possibleCapture");
+					}//Backwards Capture
+			}//Move Backwards
+			while($("[data-x='"+bishopWhitePossibleXValue2+"'][data-y='"+bishopWhitePossibleYValue2+"']").hasClass("occupied") != true 
+				&& bishopWhitePossibleYValue >= 0){     
+			$("[data-x='"+bishopWhitePossibleXValue2+"'][data-y='"+bishopWhitePossibleYValue2+"']").addClass("possibleZone");
+			bishopWhitePossibleYValue -= 1;
+				if($("[data-x='"+bishopWhitePossibleXValue2+"'][data-y='"+bishopWhitePossibleYValue+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+bishopWhitePossibleXValue2+"'][data-y='"+bishopWhitePossibleYValue+"']").hasClass("blackPiece")){
+					$("[data-x='"+bishopWhitePossibleXValue2+"'][data-y='"+bishopWhitePossibleYValue+"']").addClass("possibleCapture");
+				}//Left Capture
+			}//Move Left 
+			while($("[data-x='"+bishopWhitePossibleXValue+"'][data-y='"+bishopWhitePossibleXValue2+"']").hasClass("occupied") != true 
+				&& bishopWhitePossibleYValue2 <= 7){     
+			$("[data-x='"+bishopWhitePossibleXValue+"'][data-y='"+bishopWhitePossibleYValue2+"']").addClass("possibleZone");
+			bishopWhitePossibleYValue2++;
+				if($("[data-x='"+bishopWhitePossibleXValue+"'][data-y='"+bishopWhitePossibleYValue2+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+bishopWhitePossibleXValue+"'][data-y='"+bishopWhitePossibleYValue2+"']").hasClass("blackPiece")){
+					$("[data-x='"+bishopWhitePossibleXValue+"'][data-y='"+bishopWhitePossibleYValue2+"']").addClass("possibleCapture");
+				}//Right Capture
+			}//Move Right
+			
+		};//function getBishopWhiteOptions
+	}//top if
+});//Bishop White moves
+
+//Bishop Black MOVES
+$("#board").on("click",".bishopBlack",function(e){ //selecting Black piece
+	if($(".bishopBlack").hasClass("possibleCapture") != true){
+	$(".selectedPiece").removeClass("selectedPiece");
+	$(".possibleZone").removeClass("possibleZone");
+	$(this).addClass("selectedPiece"); // add class so you know its selected
+
+		//get possible move options (adds class .possibleZone)
+		getBishopBlackOptions($(".selectedPiece").attr("data-x"),$(".selectedPiece").attr("data-y"));
+
+		//bishop move options 
+		function getBishopBlackOptions(bishopBlackX,bishopBlackY){
+			var bishopBlackPossibleXValue = parseInt(bishopBlackX) - 1;
+			var bishopBlackPossibleXValue2 = parseInt(bishopBlackX) + 1;
+			var bishopBlackPossibleYValue = parseInt(bishopBlackY) - 1;
+			var bishopBlackPossibleYValue2 = parseInt(bishopBlackY) + 1;
+			
+
+			while($("[data-x='"+bishopBlackPossibleXValue+"'][data-y='"+bishopBlackPossibleYValue+"']").hasClass("occupied") != true 
+				&& bishopBlackPossibleXValue >= 0){     
+			$("[data-x='"+bishopBlackPossibleXValue+"'][data-y='"+bishopBlackPossibleYValue+"']").addClass("possibleZone");
+			bishopBlackPossibleXValue -= 1;
+				if($("[data-x='"+bishopBlackPossibleXValue+"'][data-y='"+bishopBlackPossibleYValue+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+bishopBlackPossibleXValue+"'][data-y='"+bishopBlackPossibleYValue+"']").hasClass("blackPiece")){
+					$("[data-x='"+bishopBlackPossibleXValue+"'][data-y='"+bishopBlackPossibleYValue2+"']").addClass("possibleCapture");
+				}//Forward Capture
+			}//Move Foward 
+			while($("[data-x='"+bishopBlackPossibleXValue2+"'][data-y='"+bishopBlackPossibleYValue2+"']").hasClass("occupied") != true 
+				&& bishopBlackPossibleXValue2 <= 7){     
+			$("[data-x='"+bishopBlackPossibleXValue2+"'][data-y='"+bishopBlackPossibleYValue2+"']").addClass("possibleZone");
+			bishopBlackPossibleXValue2++;
+				if($("[data-x='"+bishopBlackPossibleXValue2+"'][data-y='"+bishopBlackPossibleYValue2+"']").hasClass("occupied") == true 
+						&& $("[data-x='"+bishopBlackPossibleXValue2+"'][data-y='"+bishopBlackPossibleYValue2+"']").hasClass("blackPiece")){
+						$("[data-x='"+bishopBlackPossibleXValue2+"'][data-y='"+bishopBlackPossibleYValue+"']").addClass("possibleCapture");
+					}//Backwards Capture
+			}//Move Backwards
+			while($("[data-x='"+bishopBlackPossibleXValue2+"'][data-y='"+bishopBlackPossibleYValue2+"']").hasClass("occupied") != true 
+				&& bishopBlackPossibleYValue >= 0){     
+			$("[data-x='"+bishopBlackPossibleXValue2+"'][data-y='"+bishopBlackPossibleYValue2+"']").addClass("possibleZone");
+			bishopBlackPossibleYValue -= 1;
+				if($("[data-x='"+bishopBlackPossibleXValue2+"'][data-y='"+bishopBlackPossibleYValue+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+bishopBlackPossibleXValue2+"'][data-y='"+bishopBlackPossibleYValue+"']").hasClass("blackPiece")){
+					$("[data-x='"+bishopBlackPossibleXValue2+"'][data-y='"+bishopBlackPossibleYValue2+"']").addClass("possibleCapture");
+				}//Left Capture
+			}//Move Left 
+			while($("[data-x='"+bishopBlackPossibleXValue+"'][data-y='"+bishopBlackPossibleXValue2+"']").hasClass("occupied") != true 
+				&& bishopBlackPossibleYValue2 <= 7){     
+			$("[data-x='"+bishopBlackPossibleXValue+"'][data-y='"+bishopBlackPossibleYValue2+"']").addClass("possibleZone");
+			bishopBlackPossibleYValue2++;
+				if($("[data-x='"+bishopBlackPossibleXValue+"'][data-y='"+bishopBlackPossibleYValue2+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+bishopBlackPossibleXValue+"'][data-y='"+bishopBlackPossibleYValue2+"']").hasClass("blackPiece")){
+					$("[data-x='"+bishopBlackPossibleXValue+"'][data-y='"+bishopBlackPossibleYValue+"']").addClass("possibleCapture");
+				}//Right Capture
+			}//Move Right
+			
+		};//function getBishopBlackOptions
+	}//top if
+});//Bishop Black moves
+
+//queen WHITE MOVES
+$("#board").on("click",".queenWhite",function(e){ //selecting white piece
+	if($(".queenWhite").hasClass("possibleCapture") != true){
+	$(".selectedPiece").removeClass("selectedPiece");
+	$(".possibleZone").removeClass("possibleZone");
+	$(this).addClass("selectedPiece"); // add class so you know its selected
+
+		//get possible move options (adds class .possibleZone)
+		getQueenWhiteOptions($(".selectedPiece").attr("data-x"),$(".selectedPiece").attr("data-y"));
+
+		//white queen move options 
+		function getQueenWhiteOptions(queenWhiteX,queenWhiteY){
+			var queenWhitePossibleXValue = parseInt(queenWhiteX) - 1;
+			var queenWhitePossibleXValue2 = parseInt(queenWhiteX) + 1;
+			var queenWhitePossibleYValue = parseInt(queenWhiteY) - 1;
+			var queenWhitePossibleYValue2 = parseInt(queenWhiteY) + 1;
+			
+
+			while($("[data-x='"+queenWhitePossibleXValue+"'][data-y='"+queenWhiteY+"']").hasClass("occupied") != true 
+				&& queenWhitePossibleXValue >= 0){     
+			$("[data-x='"+queenWhitePossibleXValue+"'][data-y='"+queenWhiteY+"']").addClass("possibleZone");
+			queenWhitePossibleXValue -= 1;
+				if($("[data-x='"+queenWhitePossibleXValue+"'][data-y='"+queenWhiteY+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+queenWhitePossibleXValue+"'][data-y='"+queenWhiteY+"']").hasClass("blackPiece")){
+					$("[data-x='"+queenWhitePossibleXValue+"'][data-y='"+queenWhiteY+"']").addClass("possibleCapture");
+				}//Forward Capture
+			}//Move Foward 
+			while($("[data-x='"+queenWhitePossibleXValue2+"'][data-y='"+queenWhiteY+"']").hasClass("occupied") != true 
+				&& queenWhitePossibleXValue2 <= 7){     
+			$("[data-x='"+queenWhitePossibleXValue2+"'][data-y='"+queenWhiteY+"']").addClass("possibleZone");
+			queenWhitePossibleXValue2++;
+				if($("[data-x='"+queenWhitePossibleXValue2+"'][data-y='"+queenWhiteY+"']").hasClass("occupied") == true 
+						&& $("[data-x='"+queenWhitePossibleXValue2+"'][data-y='"+queenWhiteY+"']").hasClass("blackPiece")){
+						$("[data-x='"+queenWhitePossibleXValue2+"'][data-y='"+queenWhiteY+"']").addClass("possibleCapture");
+					}//Backwards Capture
+			}//Move Backwards
+			while($("[data-x='"+queenWhiteX+"'][data-y='"+queenWhitePossibleYValue+"']").hasClass("occupied") != true 
+				&& queenWhitePossibleYValue >= 0){     
+			$("[data-x='"+queenWhiteX+"'][data-y='"+queenWhitePossibleYValue+"']").addClass("possibleZone");
+			queenWhitePossibleYValue -= 1;
+				if($("[data-x='"+queenWhiteX+"'][data-y='"+queenWhitePossibleYValue+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+queenWhiteX+"'][data-y='"+queenWhitePossibleYValue+"']").hasClass("blackPiece")){
+					$("[data-x='"+queenWhiteX+"'][data-y='"+queenWhitePossibleYValue+"']").addClass("possibleCapture");
+				}//Left Capture
+			}//Move Left 
+			while($("[data-x='"+queenWhiteX+"'][data-y='"+queenWhitePossibleXValue2+"']").hasClass("occupied") != true 
+				&& queenWhitePossibleYValue2 <= 7){     
+			$("[data-x='"+queenWhiteX+"'][data-y='"+queenWhitePossibleYValue2+"']").addClass("possibleZone");
+			queenWhitePossibleYValue2++;
+				if($("[data-x='"+queenWhiteX+"'][data-y='"+queenWhitePossibleYValue2+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+queenWhiteX+"'][data-y='"+queenWhitePossibleYValue2+"']").hasClass("blackPiece")){
+					$("[data-x='"+queenWhiteX+"'][data-y='"+queenWhitePossibleYValue2+"']").addClass("possibleCapture");
+				}//Right Capture
+			}//Move Right
+
+			while($("[data-x='"+queenWhitePossibleXValue+"'][data-y='"+queenWhitePossibleYValue+"']").hasClass("occupied") != true 
+				&& queenWhitePossibleXValue >= 0){     
+			$("[data-x='"+queenWhitePossibleXValue+"'][data-y='"+queenWhitePossibleYValue+"']").addClass("possibleZone");
+			queenWhitePossibleXValue -= 1;
+				if($("[data-x='"+queenWhitePossibleXValue+"'][data-y='"+queenWhitePossibleYValue+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+queenWhitePossibleXValue+"'][data-y='"+queenWhitePossibleYValue+"']").hasClass("blackPiece")){
+					$("[data-x='"+queenWhitePossibleXValue+"'][data-y='"+queenWhitePossibleYValue+"']").addClass("possibleCapture");
+				}//Forward Capture
+			}//Move Foward 
+			while($("[data-x='"+queenWhitePossibleXValue2+"'][data-y='"+queenWhitePossibleYValue2+"']").hasClass("occupied") != true 
+				&& queenWhitePossibleXValue2 <= 7){     
+			$("[data-x='"+queenWhitePossibleXValue2+"'][data-y='"+queenWhitePossibleYValue2+"']").addClass("possibleZone");
+			queenWhitePossibleXValue2++;
+				if($("[data-x='"+queenWhitePossibleXValue2+"'][data-y='"+queenWhitePossibleYValue2+"']").hasClass("occupied") == true 
+						&& $("[data-x='"+queenWhitePossibleXValue2+"'][data-y='"+queenWhitePossibleYValue2+"']").hasClass("blackPiece")){
+						$("[data-x='"+queenWhitePossibleXValue2+"'][data-y='"+queenWhitePossibleYValue2+"']").addClass("possibleCapture");
+					}//Backwards Capture
+			}//Move Backwards
+			while($("[data-x='"+queenWhitePossibleXValue2+"'][data-y='"+queenWhitePossibleYValue2+"']").hasClass("occupied") != true 
+				&& queenWhitePossibleYValue >= 0){     
+			$("[data-x='"+queenWhitePossibleXValue2+"'][data-y='"+queenWhitePossibleYValue2+"']").addClass("possibleZone");
+			queenWhitePossibleYValue -= 1;
+				if($("[data-x='"+queenWhitePossibleXValue2+"'][data-y='"+queenWhitePossibleYValue+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+queenWhitePossibleXValue2+"'][data-y='"+queenWhitePossibleYValue+"']").hasClass("blackPiece")){
+					$("[data-x='"+queenWhitePossibleXValue2+"'][data-y='"+queenWhitePossibleYValue+"']").addClass("possibleCapture");
+				}//Left Capture
+			}//Move Left 
+			while($("[data-x='"+queenWhitePossibleXValue+"'][data-y='"+queenWhitePossibleXValue2+"']").hasClass("occupied") != true 
+				&& queenWhitePossibleYValue2 <= 7){     
+			$("[data-x='"+queenWhitePossibleXValue+"'][data-y='"+queenWhitePossibleYValue2+"']").addClass("possibleZone");
+			queenWhitePossibleYValue2++;
+				if($("[data-x='"+queenWhitePossibleXValue+"'][data-y='"+queenWhitePossibleYValue2+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+queenWhitePossibleXValue+"'][data-y='"+queenWhitePossibleYValue2+"']").hasClass("blackPiece")){
+					$("[data-x='"+queenWhitePossibleXValue+"'][data-y='"+queenWhitePossibleYValue2+"']").addClass("possibleCapture");
+				}//Right Capture
+			}//Move Right
+			
+		};//function getqueenWhiteOptions
+	}//top if
+});//queen White moves
+
+
+//queen Black MOVES
+$("#board").on("click",".queenBlack",function(e){ //selecting Black piece
+	if($(".queenBlack").hasClass("possibleCapture") != true){
+	$(".selectedPiece").removeClass("selectedPiece");
+	$(".possibleZone").removeClass("possibleZone");
+	$(this).addClass("selectedPiece"); // add class so you know its selected
+
+		//get possible move options (adds class .possibleZone)
+		getQueenBlackOptions($(".selectedPiece").attr("data-x"),$(".selectedPiece").attr("data-y"));
+
+		//Black queen move options 
+		function getQueenBlackOptions(queenBlackX,queenBlackY){
+			var queenBlackPossibleXValue = parseInt(queenBlackX) - 1;
+			var queenBlackPossibleXValue2 = parseInt(queenBlackX) + 1;
+			var queenBlackPossibleYValue = parseInt(queenBlackY) - 1;
+			var queenBlackPossibleYValue2 = parseInt(queenBlackY) + 1;
+			
+
+			while($("[data-x='"+queenBlackPossibleXValue+"'][data-y='"+queenBlackY+"']").hasClass("occupied") != true 
+				&& queenBlackPossibleXValue >= 0){     
+			$("[data-x='"+queenBlackPossibleXValue+"'][data-y='"+queenBlackY+"']").addClass("possibleZone");
+			queenBlackPossibleXValue -= 1;
+				if($("[data-x='"+queenBlackPossibleXValue+"'][data-y='"+queenBlackY+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+queenBlackPossibleXValue+"'][data-y='"+queenBlackY+"']").hasClass("blackPiece")){
+					$("[data-x='"+queenBlackPossibleXValue+"'][data-y='"+queenBlackY+"']").addClass("possibleCapture");
+				}//Forward Capture
+			}//Move Foward 
+			while($("[data-x='"+queenBlackPossibleXValue2+"'][data-y='"+queenBlackY+"']").hasClass("occupied") != true 
+				&& queenBlackPossibleXValue2 <= 7){     
+			$("[data-x='"+queenBlackPossibleXValue2+"'][data-y='"+queenBlackY+"']").addClass("possibleZone");
+			queenBlackPossibleXValue2++;
+				if($("[data-x='"+queenBlackPossibleXValue2+"'][data-y='"+queenBlackY+"']").hasClass("occupied") == true 
+						&& $("[data-x='"+queenBlackPossibleXValue2+"'][data-y='"+queenBlackY+"']").hasClass("blackPiece")){
+						$("[data-x='"+queenBlackPossibleXValue2+"'][data-y='"+queenBlackY+"']").addClass("possibleCapture");
+					}//Backwards Capture
+			}//Move Backwards
+			while($("[data-x='"+queenBlackX+"'][data-y='"+queenBlackPossibleYValue+"']").hasClass("occupied") != true 
+				&& queenBlackPossibleYValue >= 0){     
+			$("[data-x='"+queenBlackX+"'][data-y='"+queenBlackPossibleYValue+"']").addClass("possibleZone");
+			queenBlackPossibleYValue -= 1;
+				if($("[data-x='"+queenBlackX+"'][data-y='"+queenBlackPossibleYValue+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+queenBlackX+"'][data-y='"+queenBlackPossibleYValue+"']").hasClass("blackPiece")){
+					$("[data-x='"+queenBlackX+"'][data-y='"+queenBlackPossibleYValue+"']").addClass("possibleCapture");
+				}//Left Capture
+			}//Move Left 
+			while($("[data-x='"+queenBlackX+"'][data-y='"+queenBlackPossibleXValue2+"']").hasClass("occupied") != true 
+				&& queenBlackPossibleYValue2 <= 7){     
+			$("[data-x='"+queenBlackX+"'][data-y='"+queenBlackPossibleYValue2+"']").addClass("possibleZone");
+			queenBlackPossibleYValue2++;
+				if($("[data-x='"+queenBlackX+"'][data-y='"+queenBlackPossibleYValue2+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+queenBlackX+"'][data-y='"+queenBlackPossibleYValue2+"']").hasClass("blackPiece")){
+					$("[data-x='"+queenBlackX+"'][data-y='"+queenBlackPossibleYValue2+"']").addClass("possibleCapture");
+				}//Right Capture
+			}//Move Right
+
+			while($("[data-x='"+queenBlackPossibleXValue+"'][data-y='"+queenBlackY+"']").hasClass("occupied") != true 
+				&& queenBlackPossibleXValue <= 7){     
+			$("[data-x='"+queenBlackPossibleXValue+"'][data-y='"+queenBlackY+"']").addClass("possibleZone");
+			queenBlackPossibleXValue++;
+				if($("[data-x='"+queenBlackPossibleXValue+"'][data-y='"+queenBlackY+"']").hasClass("occupied") == true 
+						&& $("[data-x='"+queenBlackPossibleXValue+"'][data-y='"+queenBlackY+"']").hasClass("whitePiece")){
+						$("[data-x='"+queenBlackPossibleXValue+"'][data-y='"+queenBlackY+"']").addClass("possibleCapture");
+					}//Forward Capture
+			}//Move Foward 
+			while($("[data-x='"+queenBlackPossibleXValue2+"'][data-y='"+queenBlackY+"']").hasClass("occupied") != true 
+				&& queenBlackPossibleXValue2 >= 0){     
+			$("[data-x='"+queenBlackPossibleXValue2+"'][data-y='"+queenBlackY+"']").addClass("possibleZone");
+			queenBlackPossibleXValue2 -= 1;
+				if($("[data-x='"+queenBlackPossibleXValue2+"'][data-y='"+queenBlackY+"']").hasClass("occupied") == true 
+						&& $("[data-x='"+queenBlackPossibleXValue2+"'][data-y='"+queenBlackY+"']").hasClass("whitePiece")){
+						$("[data-x='"+queenBlackPossibleXValue2+"'][data-y='"+queenBlackY+"']").addClass("possibleCapture");
+					}//Backwards Capture
+			}//Move Backwards
+			while($("[data-x='"+queenBlackX+"'][data-y='"+queenBlackPossibleYValue+"']").hasClass("occupied") != true 
+				&& queenBlackPossibleYValue <= 7){     
+			$("[data-x='"+queenBlackX+"'][data-y='"+queenBlackPossibleYValue+"']").addClass("possibleZone");
+			queenBlackPossibleYValue++;
+				if($("[data-x='"+queenBlackX+"'][data-y='"+queenBlackPossibleYValue+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+queenBlackX+"'][data-y='"+queenBlackPossibleYValue+"']").hasClass("whitePiece")){
+					$("[data-x='"+queenBlackX+"'][data-y='"+queenBlackPossibleYValue+"']").addClass("possibleCapture");
+				}//Left Capture
+			}//Move Left 
+			while($("[data-x='"+queenBlackX+"'][data-y='"+queenBlackPossibleXValue2+"']").hasClass("occupied") != true 
+				&& queenBlackPossibleYValue2 >= 0){     
+			$("[data-x='"+queenBlackX+"'][data-y='"+queenBlackPossibleYValue2+"']").addClass("possibleZone");
+			queenBlackPossibleYValue2 -= 1;
+				if($("[data-x='"+queenBlackX+"'][data-y='"+queenBlackPossibleYValue2+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+queenBlackX+"'][data-y='"+queenBlackPossibleYValue2+"']").hasClass("whitePiece")){
+					$("[data-x='"+queenBlackX+"'][data-y='"+queenBlackPossibleYValue2+"']").addClass("possibleCapture");
+				}//Right Capture
+			}//Move Right
+			
+		};//function getqueenBlackOptions
+	}//top if
+});//queen Black moves
 
 //Move pieces
 
@@ -447,6 +757,34 @@ $(this).addClass("selectedZone");
 		$(".selectedPiece").removeClass("rookBlack"); //if moving remove it
 		$(".selectedPiece").removeClass("blackPiece");
 		$(".selectedZone").addClass("rookBlack"); //rebuild piece
+		$(".selectedZone").addClass("blackPiece");	
+
+	}
+	if($(".selectedPiece").hasClass("bishopWhite") == true){
+		$(".selectedPiece").removeClass("bishopWhite"); //if moving remove it
+		$(".selectedPiece").removeClass("whitePiece");
+		$(".selectedZone").addClass("bishopWhite"); //rebuild piece
+		$(".selectedZone").addClass("whitePiece");	
+
+	}
+	if($(".selectedPiece").hasClass("bishopBlack") == true){
+		$(".selectedPiece").removeClass("bishopBlack"); //if moving remove it
+		$(".selectedPiece").removeClass("blackPiece");
+		$(".selectedZone").addClass("bishopBlack"); //rebuild piece
+		$(".selectedZone").addClass("blackPiece");	
+
+	}
+	if($(".selectedPiece").hasClass("queenWhite") == true){
+		$(".selectedPiece").removeClass("queenWhite"); //if moving remove it
+		$(".selectedPiece").removeClass("whitePiece");
+		$(".selectedZone").addClass("queenWhite"); //rebuild piece
+		$(".selectedZone").addClass("whitePiece");	
+
+	}
+	if($(".selectedPiece").hasClass("queenBlack") == true){
+		$(".selectedPiece").removeClass("queenBlack"); //if moving remove it
+		$(".selectedPiece").removeClass("blackPiece");
+		$(".selectedZone").addClass("queenBlack"); //rebuild piece
 		$(".selectedZone").addClass("blackPiece");	
 
 	}
@@ -489,6 +827,32 @@ if($(".selectedZone").hasClass("possibleCapture") == true){
 			$(".selectedZone").addClass("rookBlack"); //rebuild piece
 			$(".selectedZone").addClass("blackPiece");
 		}
+		if($(".selectedPiece").hasClass("bishopBlack") == true){
+			$(".selectedPiece").removeClass("bishopBlack"); //if moving remove it
+			$(".selectedPiece").removeClass("blackPiece");
+			$(".selectedZone").removeClass("pawnWhite");
+			$(".selectedZone").removeClass("rookWhite");
+			$(".selectedZone").removeClass("knightWhite");
+			$(".selectedZone").removeClass("bishopWhite");
+			$(".selectedZone").removeClass("queenWhite");
+			$(".selectedZone").removeClass("kingWhite");
+			$(".selectedZone").removeClass("whitePiece");
+			$(".selectedZone").addClass("bishopBlack"); //rebuild piece
+			$(".selectedZone").addClass("blackPiece");
+		}
+		if($(".selectedPiece").hasClass("queenBlack") == true){
+			$(".selectedPiece").removeClass("queenBlack"); //if moving remove it
+			$(".selectedPiece").removeClass("blackPiece");
+			$(".selectedZone").removeClass("pawnWhite");
+			$(".selectedZone").removeClass("rookWhite");
+			$(".selectedZone").removeClass("knightWhite");
+			$(".selectedZone").removeClass("bishopWhite");
+			$(".selectedZone").removeClass("queenWhite");
+			$(".selectedZone").removeClass("kingWhite");
+			$(".selectedZone").removeClass("whitePiece");
+			$(".selectedZone").addClass("queenBlack"); //rebuild piece
+			$(".selectedZone").addClass("blackPiece");
+		}
 		/*else if($(".selectedPiece").hasClass("pawnBlack") == true){
 			$(".selectedPiece").removeClass("pawnBlack"); //if moving remove it
 			$(".selectedZone").removeClass("pawnWhite");
@@ -527,6 +891,32 @@ if($(".selectedZone").hasClass("possibleCapture") == true){
 			$(".selectedZone").removeClass("kingBlack");
 			$(".selectedZone").removeClass("blackPiece");
 			$(".selectedZone").addClass("rookWhite"); //rebuild piece
+			$(".selectedZone").addClass("whitePiece");
+		}
+		if($(".selectedPiece").hasClass("bishopWhite") == true){
+			$(".selectedPiece").removeClass("bishopWhite"); //if moving remove it
+			$(".selectedPiece").removeClass("whitePiece");
+			$(".selectedZone").removeClass("pawnBlack");
+			$(".selectedZone").removeClass("rookBlack");
+			$(".selectedZone").removeClass("knightBlack");
+			$(".selectedZone").removeClass("bishopBlack");
+			$(".selectedZone").removeClass("queenBlack");
+			$(".selectedZone").removeClass("kingBlack");
+			$(".selectedZone").removeClass("blackPiece");
+			$(".selectedZone").addClass("bishopWhite"); //rebuild piece
+			$(".selectedZone").addClass("whitePiece");
+		}
+		if($(".selectedPiece").hasClass("queenWhite") == true){
+			$(".selectedPiece").removeClass("queenWhite"); //if moving remove it
+			$(".selectedPiece").removeClass("whitePiece");
+			$(".selectedZone").removeClass("pawnBlack");
+			$(".selectedZone").removeClass("rookBlack");
+			$(".selectedZone").removeClass("knightBlack");
+			$(".selectedZone").removeClass("bishopBlack");
+			$(".selectedZone").removeClass("queenBlack");
+			$(".selectedZone").removeClass("kingBlack");
+			$(".selectedZone").removeClass("blackPiece");
+			$(".selectedZone").addClass("queenWhite"); //rebuild piece
 			$(".selectedZone").addClass("whitePiece");
 		}
 		/*else if($(".selectedPiece").hasClass("pawnBlack") == true){
