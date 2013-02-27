@@ -166,41 +166,54 @@ $("[data-x='7'][data-y='4']").addClass("kingWhite");
 
 
 //Adding an occupied class so I know a piece is there
+//Adding color making capture logic easier
 if($("div").hasClass("pawnWhite") == true){
 	$("div .pawnWhite").addClass("occupied");
+	$("div .pawnWhite").addClass("whitePiece");
 }
 if($("div").hasClass("rookWhite") == true){
 	$("div .rookWhite").addClass("occupied");
+	$("div .rookWhite").addClass("whitePiece");
 }
 if($("div").hasClass("knightWhite") == true){
 	$("div .knightWhite").addClass("occupied");
+	$("div .knightWhite").addClass("whitePiece");
 }
 if($("div").hasClass("bishopWhite") == true){
 	$("div .bishopWhite").addClass("occupied");
+	$("div .bishopWhite").addClass("whitePiece");
 }
 if($("div").hasClass("queenWhite") == true){
 	$("div .queenWhite").addClass("occupied");
+	$("div .queenWhite").addClass("whitePiece");
 }
 if($("div").hasClass("kingWhite") == true){
 	$("div .kingWhite").addClass("occupied");
+	$("div .kingWhite").addClass("whitePiece");
 }
 if($("div").hasClass("pawnBlack") == true){
 	$("div .pawnBlack").addClass("occupied");
+	$("div .pawnBlack").addClass("blackPiece");
 }
 if($("div").hasClass("rookBlack") == true){
 	$("div .rookBlack").addClass("occupied");
+	$("div .rookBlack").addClass("blackPiece");
 }
 if($("div").hasClass("knightBlack") == true){
 	$("div .knightBlack").addClass("occupied");
+	$("div .knightBlack").addClass("blackPiece");
 }
 if($("div").hasClass("bishopBlack") == true){
 	$("div .bishopBlack").addClass("occupied");
+	$("div .bishopBlack").addClass("blackPiece");
 }
 if($("div").hasClass("queenBlack") == true){
 	$("div .queenBlack").addClass("occupied");
+	$("div .queenBlack").addClass("blackPiece");
 }
 if($("div").hasClass("kingBlack") == true){
 	$("div .kingBlack").addClass("occupied");
+	$("div .kingBlack").addClass("blackPiece");
 }
 
 //Move Options (for selected pieces)
@@ -227,14 +240,17 @@ $("#board").on("click",".pawnWhite",function(e){ //selecting white piece
 			if($("[data-x='"+pawnWhitePossibleXValue+"'][data-y='"+pawnWhiteY+"']").hasClass("occupied") != true){     
 			$("[data-x='"+pawnWhitePossibleXValue+"'][data-y='"+pawnWhiteY+"']").addClass("possibleZone");
 			}//Move Foward 1 as long as noone is there
-			if(pawnWhiteX == 6 && $("[data-x='"+pawnWhitePossibleXValue+"'][data-y='"+pawnWhiteY+"']").hasClass("occupied") != true && $("[data-x='"+pawnWhitePossibleXValue2+"'][data-y='"+pawnWhiteY+"']").hasClass("occupied") != true){
+			if(pawnWhiteX == 6 && $("[data-x='"+pawnWhitePossibleXValue+"'][data-y='"+pawnWhiteY+"']").hasClass("occupied") != true 
+				&& $("[data-x='"+pawnWhitePossibleXValue2+"'][data-y='"+pawnWhiteY+"']").hasClass("occupied") != true){
 				var pawnWhitePossibleXValue = parseInt(pawnWhiteX) - 2;
 				$("[data-x='"+pawnWhitePossibleXValue+"'][data-y='"+pawnWhiteY+"']").addClass("possibleZone");
 			}//First move can go two
-			if($("[data-x='"+pawnWhiteDiagonalXValue+"'][data-y='"+pawnWhiteDiagonalYValue1+"']").hasClass("occupied","pawnBlack")){
+			if($("[data-x='"+pawnWhiteDiagonalXValue+"'][data-y='"+pawnWhiteDiagonalYValue1+"']").hasClass("occupied") == true 
+				&& $("[data-x='"+pawnWhiteDiagonalXValue+"'][data-y='"+pawnWhiteDiagonalYValue1+"']").hasClass("blackPiece") == true){
 				$("[data-x='"+pawnWhiteDiagonalXValue+"'][data-y='"+pawnWhiteDiagonalYValue1+"']").addClass("possibleCapture");
 			}//Diagonal Move 1
-			if($("[data-x='"+pawnWhiteDiagonalXValue+"'][data-y='"+pawnWhiteDiagonalYValue2+"']").hasClass("occupied","pawnBlack")){
+			if($("[data-x='"+pawnWhiteDiagonalXValue+"'][data-y='"+pawnWhiteDiagonalYValue2+"']").hasClass("occupied") == true 
+				&& $("[data-x='"+pawnWhiteDiagonalXValue+"'][data-y='"+pawnWhiteDiagonalYValue2+"']").hasClass("blackPiece") == true){
 				$("[data-x='"+pawnWhiteDiagonalXValue+"'][data-y='"+pawnWhiteDiagonalYValue2+"']").addClass("possibleCapture");
 			}//Diagonal Move 2
 		};//function getPawnWhiteOptions
@@ -264,19 +280,140 @@ $("#board").on("click",".pawnBlack",function(e){ //selecting white piece
 			if($("[data-x='"+pawnBlackPossibleXValue+"'][data-y='"+pawnBlackY+"']").hasClass("occupied") != true){     
 			$("[data-x='"+pawnBlackPossibleXValue+"'][data-y='"+pawnBlackY+"']").addClass("possibleZone");
 			}//Move Foward 1 as long as noone is there
-			if(pawnBlackX == 1 && $("[data-x='"+pawnBlackPossibleXValue+"'][data-y='"+pawnBlackY+"']").hasClass("occupied") != true && $("[data-x='"+pawnBlackPossibleXValue2+"'][data-y='"+pawnBlackY+"']").hasClass("occupied") != true){
+			if(pawnBlackX == 1 && $("[data-x='"+pawnBlackPossibleXValue+"'][data-y='"+pawnBlackY+"']").hasClass("occupied") != true 
+				&& $("[data-x='"+pawnBlackPossibleXValue2+"'][data-y='"+pawnBlackY+"']").hasClass("occupied") != true){
 				var pawnBlackPossibleXValue = parseInt(pawnBlackX) + 2;
 				$("[data-x='"+pawnBlackPossibleXValue+"'][data-y='"+pawnBlackY+"']").addClass("possibleZone");
 			}//First move can go two
-			if($("[data-x='"+pawnBlackDiagonalXValue+"'][data-y='"+pawnBlackDiagonalYValue1+"']").hasClass("occupied","pawnWhite")){
+			if($("[data-x='"+pawnBlackDiagonalXValue+"'][data-y='"+pawnBlackDiagonalYValue1+"']").hasClass("occupied") == true 
+				&& $("[data-x='"+pawnBlackDiagonalXValue+"'][data-y='"+pawnBlackDiagonalYValue1+"']").hasClass("whitePiece") == true ){
 				$("[data-x='"+pawnBlackDiagonalXValue+"'][data-y='"+pawnBlackDiagonalYValue1+"']").addClass("possibleCapture");
 			}//Diagonal Move 1
-			if($("[data-x='"+pawnBlackDiagonalXValue+"'][data-y='"+pawnBlackDiagonalYValue2+"']").hasClass("occupied","pawnWhite")){
+			if($("[data-x='"+pawnBlackDiagonalXValue+"'][data-y='"+pawnBlackDiagonalYValue2+"']").hasClass("occupied") == true 
+				&& $("[data-x='"+pawnBlackDiagonalXValue+"'][data-y='"+pawnBlackDiagonalYValue2+"']").hasClass("whitePiece") == true){
 				$("[data-x='"+pawnBlackDiagonalXValue+"'][data-y='"+pawnBlackDiagonalYValue2+"']").addClass("possibleCapture");
 			}//Diagonal Move 2
 		};//function getPawnBlackOptions
 	}//top if
 }); //pawnBlack Moves
+
+//ROOK WHITE MOVES
+$("#board").on("click",".rookWhite",function(e){ //selecting white piece
+	if($(".rookWhite").hasClass("possibleCapture") != true){
+	$(".selectedPiece").removeClass("selectedPiece");
+	$(".possibleZone").removeClass("possibleZone");
+	$(this).addClass("selectedPiece"); // add class so you know its selected
+
+		//get possible move options (adds class .possibleZone)
+		getRookWhiteOptions($(".selectedPiece").attr("data-x"),$(".selectedPiece").attr("data-y"));
+
+		//white rook move options 
+		function getRookWhiteOptions(rookWhiteX,rookWhiteY){
+			var rookWhitePossibleXValue = parseInt(rookWhiteX) - 1;
+			var rookWhitePossibleXValue2 = parseInt(rookWhiteX) + 1;
+			var rookWhitePossibleYValue = parseInt(rookWhiteY) - 1;
+			var rookWhitePossibleYValue2 = parseInt(rookWhiteY) + 1;
+			
+
+			while($("[data-x='"+rookWhitePossibleXValue+"'][data-y='"+rookWhiteY+"']").hasClass("occupied") != true 
+				&& rookWhitePossibleXValue >= 0){     
+			$("[data-x='"+rookWhitePossibleXValue+"'][data-y='"+rookWhiteY+"']").addClass("possibleZone");
+			rookWhitePossibleXValue -= 1;
+				if($("[data-x='"+rookWhitePossibleXValue+"'][data-y='"+rookWhiteY+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+rookWhitePossibleXValue+"'][data-y='"+rookWhiteY+"']").hasClass("blackPiece")){
+					$("[data-x='"+rookWhitePossibleXValue+"'][data-y='"+rookWhiteY+"']").addClass("possibleCapture");
+				}//Forward Capture
+			}//Move Foward 
+			while($("[data-x='"+rookWhitePossibleXValue2+"'][data-y='"+rookWhiteY+"']").hasClass("occupied") != true 
+				&& rookWhitePossibleXValue2 <= 7){     
+			$("[data-x='"+rookWhitePossibleXValue2+"'][data-y='"+rookWhiteY+"']").addClass("possibleZone");
+			rookWhitePossibleXValue2++;
+				if($("[data-x='"+rookWhitePossibleXValue2+"'][data-y='"+rookWhiteY+"']").hasClass("occupied") == true 
+						&& $("[data-x='"+rookWhitePossibleXValue2+"'][data-y='"+rookWhiteY+"']").hasClass("blackPiece")){
+						$("[data-x='"+rookWhitePossibleXValue2+"'][data-y='"+rookWhiteY+"']").addClass("possibleCapture");
+					}//Backwards Capture
+			}//Move Backwards
+			while($("[data-x='"+rookWhiteX+"'][data-y='"+rookWhitePossibleYValue+"']").hasClass("occupied") != true 
+				&& rookWhitePossibleYValue >= 0){     
+			$("[data-x='"+rookWhiteX+"'][data-y='"+rookWhitePossibleYValue+"']").addClass("possibleZone");
+			rookWhitePossibleYValue -= 1;
+				if($("[data-x='"+rookWhiteX+"'][data-y='"+rookWhitePossibleYValue+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+rookWhiteX+"'][data-y='"+rookWhitePossibleYValue+"']").hasClass("blackPiece")){
+					$("[data-x='"+rookWhiteX+"'][data-y='"+rookWhitePossibleYValue+"']").addClass("possibleCapture");
+				}//Left Capture
+			}//Move Left 
+			while($("[data-x='"+rookWhiteX+"'][data-y='"+rookWhitePossibleXValue2+"']").hasClass("occupied") != true 
+				&& rookWhitePossibleYValue2 <= 7){     
+			$("[data-x='"+rookWhiteX+"'][data-y='"+rookWhitePossibleYValue2+"']").addClass("possibleZone");
+			rookWhitePossibleYValue2++;
+				if($("[data-x='"+rookWhiteX+"'][data-y='"+rookWhitePossibleYValue2+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+rookWhiteX+"'][data-y='"+rookWhitePossibleYValue2+"']").hasClass("blackPiece")){
+					$("[data-x='"+rookWhiteX+"'][data-y='"+rookWhitePossibleYValue2+"']").addClass("possibleCapture");
+				}//Right Capture
+			}//Move Right
+			
+		};//function getRookWhiteOptions
+	}//top if
+});//ROOK White moves
+
+//ROOK BLACK MOVES
+$("#board").on("click",".rookBlack",function(e){ //selecting white piece
+	if($(".rookBlack").hasClass("possibleCapture") != true){
+	$(".selectedPiece").removeClass("selectedPiece");
+	$(".possibleZone").removeClass("possibleZone");
+	$(this).addClass("selectedPiece"); // add class so you know its selected
+
+		//get possible move options (adds class .possibleZone)
+		getRookBlackOptions($(".selectedPiece").attr("data-x"),$(".selectedPiece").attr("data-y"));
+
+		//black rook move options 
+		function getRookBlackOptions(rookBlackX,rookBlackY){
+			var rookBlackPossibleXValue = parseInt(rookBlackX) + 1;
+			var rookBlackPossibleXValue2 = parseInt(rookBlackX) - 1;
+			var rookBlackPossibleYValue = parseInt(rookBlackY) + 1;
+			var rookBlackPossibleYValue2 = parseInt(rookBlackY) - 1;
+
+			while($("[data-x='"+rookBlackPossibleXValue+"'][data-y='"+rookBlackY+"']").hasClass("occupied") != true 
+				&& rookBlackPossibleXValue <= 7){     
+			$("[data-x='"+rookBlackPossibleXValue+"'][data-y='"+rookBlackY+"']").addClass("possibleZone");
+			rookBlackPossibleXValue++;
+				if($("[data-x='"+rookBlackPossibleXValue+"'][data-y='"+rookBlackY+"']").hasClass("occupied") == true 
+						&& $("[data-x='"+rookBlackPossibleXValue+"'][data-y='"+rookBlackY+"']").hasClass("whitePiece")){
+						$("[data-x='"+rookBlackPossibleXValue+"'][data-y='"+rookBlackY+"']").addClass("possibleCapture");
+					}//Forward Capture
+			}//Move Foward 
+			while($("[data-x='"+rookBlackPossibleXValue2+"'][data-y='"+rookBlackY+"']").hasClass("occupied") != true 
+				&& rookBlackPossibleXValue2 >= 0){     
+			$("[data-x='"+rookBlackPossibleXValue2+"'][data-y='"+rookBlackY+"']").addClass("possibleZone");
+			rookBlackPossibleXValue2 -= 1;
+				if($("[data-x='"+rookBlackPossibleXValue2+"'][data-y='"+rookBlackY+"']").hasClass("occupied") == true 
+						&& $("[data-x='"+rookBlackPossibleXValue2+"'][data-y='"+rookBlackY+"']").hasClass("whitePiece")){
+						$("[data-x='"+rookBlackPossibleXValue2+"'][data-y='"+rookBlackY+"']").addClass("possibleCapture");
+					}//Backwards Capture
+			}//Move Backwards
+			while($("[data-x='"+rookBlackX+"'][data-y='"+rookBlackPossibleYValue+"']").hasClass("occupied") != true 
+				&& rookBlackPossibleYValue <= 7){     
+			$("[data-x='"+rookBlackX+"'][data-y='"+rookBlackPossibleYValue+"']").addClass("possibleZone");
+			rookBlackPossibleYValue++;
+				if($("[data-x='"+rookBlackX+"'][data-y='"+rookBlackPossibleYValue+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+rookBlackX+"'][data-y='"+rookBlackPossibleYValue+"']").hasClass("whitePiece")){
+					$("[data-x='"+rookBlackX+"'][data-y='"+rookBlackPossibleYValue+"']").addClass("possibleCapture");
+				}//Left Capture
+			}//Move Left 
+			while($("[data-x='"+rookBlackX+"'][data-y='"+rookBlackPossibleXValue2+"']").hasClass("occupied") != true 
+				&& rookBlackPossibleYValue2 >= 0){     
+			$("[data-x='"+rookBlackX+"'][data-y='"+rookBlackPossibleYValue2+"']").addClass("possibleZone");
+			rookBlackPossibleYValue2 -= 1;
+				if($("[data-x='"+rookBlackX+"'][data-y='"+rookBlackPossibleYValue2+"']").hasClass("occupied") == true 
+					&& $("[data-x='"+rookBlackX+"'][data-y='"+rookBlackPossibleYValue2+"']").hasClass("whitePiece")){
+					$("[data-x='"+rookBlackX+"'][data-y='"+rookBlackPossibleYValue2+"']").addClass("possibleCapture");
+				}//Right Capture
+			}//Move Right
+
+		};//function getRookBlackOptions
+	}//top if
+});//ROOK Black moves
+
 
 
 //Move pieces
@@ -284,39 +421,126 @@ $("#board").on("click",".pawnBlack",function(e){ //selecting white piece
 $("#board").on("click",".black,.white",function(e){ 
 $(".selectedZone").removeClass("selectedZone");
 $(this).addClass("selectedZone");
-if($(".selectedZone").hasClass("possibleZone") == true){
+	if($(".selectedZone").hasClass("possibleZone") == true){
 	$(".selectedPiece").removeClass("occupied");
 	if($(".selectedPiece").hasClass("pawnWhite") == true){
 		$(".selectedPiece").removeClass("pawnWhite"); //if moving remove it
+		$(".selectedPiece").removeClass("whitePiece");
 		$(".selectedZone").addClass("pawnWhite"); //rebuild piece
+		$(".selectedZone").addClass("whitePiece");
 	}
-	else if($(".selectedPiece").hasClass("pawnBlack") == true){
+	if($(".selectedPiece").hasClass("pawnBlack") == true){
 		$(".selectedPiece").removeClass("pawnBlack"); //if moving remove it
-		$(".selectedZone").addClass("pawnBlack"); //rebuild piece						
-}
+		$(".selectedPiece").removeClass("blackPiece");
+		$(".selectedZone").addClass("pawnBlack"); //rebuild piece
+		$(".selectedZone").addClass("blackPiece");	
+
+	}
+	if($(".selectedPiece").hasClass("rookWhite") == true){
+		$(".selectedPiece").removeClass("rookWhite"); //if moving remove it
+		$(".selectedPiece").removeClass("whitePiece");
+		$(".selectedZone").addClass("rookWhite"); //rebuild piece
+		$(".selectedZone").addClass("whitePiece");	
+
+	}
+	if($(".selectedPiece").hasClass("rookBlack") == true){
+		$(".selectedPiece").removeClass("rookBlack"); //if moving remove it
+		$(".selectedPiece").removeClass("blackPiece");
+		$(".selectedZone").addClass("rookBlack"); //rebuild piece
+		$(".selectedZone").addClass("blackPiece");	
+
+	}
 			$(".selectedZone").addClass("occupied");
 				$(".possibleZone").removeClass("possibleZone");
 				$(".possibleCapture").removeClass("possibleCapture");
 					$(".selectedPiece").removeClass("selectedPiece");
 						$(".selectedZone").removeClass("selectedZone");
-}
+	}
+
+//Capture Pieces
+
 if($(".selectedZone").hasClass("possibleCapture") == true){
 	$(".selectedPiece").removeClass("occupied");
-	if($(".selectedPiece").hasClass("pawnWhite") == true){
-		$(".selectedPiece").removeClass("pawnWhite"); //if moving remove it
-		$(".selectedZone").removeClass("pawnBlack");
-		$(".selectedZone").addClass("pawnWhite"); //rebuild piece
+	if($(".selectedPiece").hasClass("blackPiece") == true){
+		$(".selectedPiece").removeClass("blackPiece");
+		if($(".selectedPiece").hasClass("pawnBlack") == true){
+			$(".selectedPiece").removeClass("pawnBlack"); //if moving remove it
+			$(".selectedPiece").removeClass("blackPiece");
+			$(".selectedZone").removeClass("pawnWhite");
+			$(".selectedZone").removeClass("rookWhite");
+			$(".selectedZone").removeClass("knightWhite");
+			$(".selectedZone").removeClass("bishopWhite");
+			$(".selectedZone").removeClass("queenWhite");
+			$(".selectedZone").removeClass("kingWhite");
+			$(".selectedZone").removeClass("whitePiece");
+			$(".selectedZone").addClass("pawnBlack"); //rebuild piece
+			$(".selectedZone").addClass("blackPiece");
+		}
+		if($(".selectedPiece").hasClass("rookBlack") == true){
+			$(".selectedPiece").removeClass("rookBlack"); //if moving remove it
+			$(".selectedPiece").removeClass("blackPiece");
+			$(".selectedZone").removeClass("pawnWhite");
+			$(".selectedZone").removeClass("rookWhite");
+			$(".selectedZone").removeClass("knightWhite");
+			$(".selectedZone").removeClass("bishopWhite");
+			$(".selectedZone").removeClass("queenWhite");
+			$(".selectedZone").removeClass("kingWhite");
+			$(".selectedZone").removeClass("whitePiece");
+			$(".selectedZone").addClass("rookBlack"); //rebuild piece
+			$(".selectedZone").addClass("blackPiece");
+		}
+		/*else if($(".selectedPiece").hasClass("pawnBlack") == true){
+			$(".selectedPiece").removeClass("pawnBlack"); //if moving remove it
+			$(".selectedZone").removeClass("pawnWhite");
+			$(".selectedZone").addClass("pawnBlack"); //rebuild piece						
+		}*/
+					$(".selectedZone").addClass("occupied");
+					$(".selectedPiece").addClass("blackPiece");
+						$(".possibleZone").removeClass("possibleZone");
+						$(".possibleCapture").removeClass("possibleCapture");
+							$(".selectedPiece").removeClass("selectedPiece");
+								$(".selectedZone").removeClass("selectedZone");
 	}
-	else if($(".selectedPiece").hasClass("pawnBlack") == true){
-		$(".selectedPiece").removeClass("pawnBlack"); //if moving remove it
-		$(".selectedZone").removeClass("pawnWhite");
-		$(".selectedZone").addClass("pawnBlack"); //rebuild piece						
+	if($(".selectedPiece").hasClass("whitePiece") == true){
+		$(".selectedPiece").removeClass("whitePiece");
+		if($(".selectedPiece").hasClass("pawnWhite") == true){
+			$(".selectedPiece").removeClass("pawnWhite"); //if moving remove it
+			$(".selectedPiece").removeClass("whitePiece");
+			$(".selectedZone").removeClass("pawnBlack");
+			$(".selectedZone").removeClass("rookBlack");
+			$(".selectedZone").removeClass("knightBlack");
+			$(".selectedZone").removeClass("bishopBlack");
+			$(".selectedZone").removeClass("queenBlack");
+			$(".selectedZone").removeClass("kingBlack");
+			$(".selectedZone").removeClass("blackPiece");
+			$(".selectedZone").addClass("pawnWhite"); //rebuild piece
+			$(".selectedZone").addClass("whitePiece");
+		}
+		if($(".selectedPiece").hasClass("rookWhite") == true){
+			$(".selectedPiece").removeClass("rookWhite"); //if moving remove it
+			$(".selectedPiece").removeClass("whitePiece");
+			$(".selectedZone").removeClass("pawnBlack");
+			$(".selectedZone").removeClass("rookBlack");
+			$(".selectedZone").removeClass("knightBlack");
+			$(".selectedZone").removeClass("bishopBlack");
+			$(".selectedZone").removeClass("queenBlack");
+			$(".selectedZone").removeClass("kingBlack");
+			$(".selectedZone").removeClass("blackPiece");
+			$(".selectedZone").addClass("rookWhite"); //rebuild piece
+			$(".selectedZone").addClass("whitePiece");
+		}
+		/*else if($(".selectedPiece").hasClass("pawnBlack") == true){
+			$(".selectedPiece").removeClass("pawnBlack"); //if moving remove it
+			$(".selectedZone").removeClass("pawnWhite");
+			$(".selectedZone").addClass("pawnBlack"); //rebuild piece						
+		}*/
+					$(".selectedZone").addClass("occupied");
+					$(".selectedPiece").addClass("whitePiece");
+						$(".possibleZone").removeClass("possibleZone");
+						$(".possibleCapture").removeClass("possibleCapture");
+							$(".selectedPiece").removeClass("selectedPiece");
+								$(".selectedZone").removeClass("selectedZone");
 	}
-				$(".selectedZone").addClass("occupied");
-					$(".possibleZone").removeClass("possibleZone");
-					$(".possibleCapture").removeClass("possibleCapture");
-						$(".selectedPiece").removeClass("selectedPiece");
-							$(".selectedZone").removeClass("selectedZone");
 }
 
 
