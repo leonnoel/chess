@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget xmlns		= "http://www.w3.org/ns/widgets"
+	xmlns:gap	= "http://phonegap.com/ns/1.0"
+	id		= "http://socialsci.com"
+	version 	= "1.0.0">
+
+	<name>Checkers</name>
+
+	<description>
+		An app for playing checkers.
+	</description>
+
+	<author href="http://github.com/leonnoel"
+		email="leon.a.noel@gmail.com">
+		Leon Noel
+	</author>
+	<preference name="permissions" value="none"/>
+	<preference name="fullscreen" value="true" />
+	<gap:platforms>
+		<gap:platform name="android" minVersion="2.1" />
+		<!--<gap:platform name="webos" />
+		<gap:platform name="symbian.wrt" />
+		<gap:platform name="blackberry" project="widgets"/>-->
+	</gap:platforms>
+
+	<icon src="img/app-icon.png" gap:role="default" />
+
+	<!-- sample preference specification -->
+	<!-- <preference name="autorotate" value="false" readonly="true"/> -->
+</widget>
